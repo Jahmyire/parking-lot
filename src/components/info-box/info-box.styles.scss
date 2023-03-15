@@ -1,0 +1,16 @@
+.info-box__container {
+    padding: 40px 15px;
+    border: solid 1px black;
+    border-radius: 2%;
+    max-width: 320px;
+    margin: auto;
+    .info-box__title {
+        text-align: center;
+    }
+    .content-wrapper {
+        h3 {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
