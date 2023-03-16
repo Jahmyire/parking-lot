@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import { Fragment } from 'react';
 const Garage = () => {
     const [vehicles, setVehicles] = useState([]);
 
@@ -16,36 +16,35 @@ const Garage = () => {
         fetchData();
     }, []);
 
+    const deleteVehicle = async (e, data) => {
+        await fetch('https:us-central1-sealed-dev.cloudfunctions.net/take-home-mock/lot/remove/' + data, {
+            method: "DELETE"
+        });
+        document.getElementById(data).parentNode.style.display='none'
+        //use API.id for ID in order for this to work
+    }
+
+
+
     return (
-        <div>
-            <table style={{ margin: 'auto' }}> 
-                <tbody>
-                    <tr>
-                        <th>Vehicle ID</th>
-                        <th>Vehicle Type</th>
-                        <th>Spot</th>
-                        <th>Parked</th>
+        <Fragment>
+            {vehicles.map((wheels, key) => {
+                return (
+                    <tr key={key}>
+                        <td>{wheels.id}</td>
+                        <td>{wheels.type}</td>
+                        <td>{wheels.spot}</td>
+                        <td>Yes</td>
+                        <td id={wheels.id}>
+                            <button onClick={(e)=> {deleteVehicle(e, wheels.id)}}>Remove</button>
+                        </td>
                     </tr>
-
-                    {vehicles.map((wheels, key) => {
-                        return (
-                            <tr key={key}>
-                                <td>{wheels.id}</td>
-                                <td>YES</td>
-                                <td>{wheels.spot}</td>
-                                <td>{wheels.type}</td>
-                                <td id={wheels.id}>
-                                    <button /*onClick={(e)=> {deleteVehicle(e, wheels.id)}}*/>Remove</button>
-                                </td>
-                            </tr>
-                        )
-                    })}
-
-                </tbody>
-            </table>
-        </div>
+                )
+            })}
+        </Fragment>
     )
 }
-
+//NoteBefoeBed
+//
 
 export default Garage;

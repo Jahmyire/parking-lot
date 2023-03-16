@@ -1,4 +1,5 @@
 @import "./components/info-box/info-box.styles.scss";
+@import "./components/check-in/check-in.styles.scss";
 
 .App {
   text-align: center;
@@ -42,4 +43,27 @@
 .topDIV {
   display: flex;
   justify-content: space-between;
+  margin: auto;
+  max-width: 900px;
+  margin-bottom: 60px;
+}
+
+.allVehicles {
+  max-width: 320px;
+  border-collapse:collapse;
+  border:1px solid  black;
+  border-radius: 10px;
+  @media only screen and (min-width: 1200px) {
+    min-width: 900px;
+  }
+
+  button, td {
+    border: solid 1px black;
+    border-radius: 10px;
+  }
+
+  td {
+    padding: 7px;
+  }
+
 }
